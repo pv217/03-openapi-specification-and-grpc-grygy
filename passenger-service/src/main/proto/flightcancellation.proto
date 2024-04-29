@@ -6,5 +6,21 @@ option java_outer_classname = "FlightCancellationProto";
 
 package grpc;
 
-// TODO add FlightCancellation service with FlightCancellationRequest and FlightCancellationResponse messages, and FlightCancellationResponseStatus enum
-// It's the same file as in flight-service
+service FlightCancellation {
+    rpc CancelFlight(FlightCancellationRequest) returns (FlightCancellationResponse) {}
+}
+
+message FlightCancellationRequest {
+    int32 id = 1;
+    string reason = 2;
+}
+
+enum FlightCancellationResponseStatus
+{
+    Cancelled = 0;
+    Error = 1;
+}
+
+message FlightCancellationResponse {
+    FlightCancellationResponseStatus status = 1;
+}
